@@ -1,103 +1,267 @@
-import Image from "next/image";
+import sampleResume from "@/data/sampleResume.json";
 
-export default function Home() {
+export default function Page() {
+  const resume = sampleResume;
+
+  const {
+    basics,
+    work,
+    education,
+    skills,
+    languages,
+    projects,
+    awards,
+    certificates,
+    volunteer,
+    publications,
+    interests,
+    references,
+  } = resume;
+
   return (
-    <div className="font-sans grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20">
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="font-mono list-inside list-decimal text-sm/6 text-center sm:text-left">
-          <li className="mb-2 tracking-[-.01em]">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] font-mono font-semibold px-1 py-0.5 rounded">
-              src/app/page.tsx
-            </code>
-            .
-          </li>
-          <li className="tracking-[-.01em]">
-            Save and see your changes instantly.
-          </li>
-        </ol>
+    <main className="bg-gray-100 flex flex-col items-center py-10 print:bg-white">
+      {/* PAGE 1 */}
+      <div
+        className="bg-white text-gray-900 p-10 leading-relaxed shadow-md
+                   w-[210mm] min-h-[297mm] mb-8 print:shadow-none print:mb-0
+                   flex flex-col justify-start"
+      >
+        {/* HEADER */}
+        <header className="mb-8">
+          <h1 className="text-3xl font-bold tracking-tight">{basics?.name}</h1>
+          <p className="text-sm text-gray-700 mt-1">
+            {basics?.email} | {basics?.phone} | {basics?.location?.city},{" "}
+            {basics?.location?.region}
+          </p>
+          {basics?.summary && (
+            <p className="text-sm mt-3">{basics.summary}</p>
+          )}
+        </header>
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:w-auto"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 w-full sm:w-auto md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
-        </div>
-      </main>
-      <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
-    </div>
+        {/* EXPERIENCE */}
+        {work?.length > 0 && (
+          <section className="mb-8 break-inside-avoid">
+            <h2 className="uppercase font-semibold tracking-wide border-b border-gray-400 pb-1 text-sm mb-3">
+              Experience
+            </h2>
+            {work.map((job, index) => (
+              <div key={index} className="mb-5 break-inside-avoid">
+                <div className="flex justify-between items-baseline">
+                  <div>
+                    <h3 className="font-semibold">{job.company}</h3>
+                    <p className="italic text-sm">{job.position}</p>
+                  </div>
+                  <div className="text-sm text-gray-700 text-right">
+                    <p>
+                      {job.startDate} – {job.endDate || "Present"}
+                    </p>
+                    <p>{job.location}</p>
+                  </div>
+                </div>
+                <ul className="list-disc ml-6 mt-2 text-sm space-y-1">
+                  {job.summary && <li>{job.summary}</li>}
+                  {job.highlights?.map((highlight, hIndex) => (
+                    <li key={hIndex}>{highlight}</li>
+                  ))}
+                </ul>
+              </div>
+            ))}
+          </section>
+        )}
+
+        {/* EDUCATION */}
+        {education?.length > 0 && (
+          <section className="mb-8 break-inside-avoid">
+            <h2 className="uppercase font-semibold tracking-wide border-b border-gray-400 pb-1 text-sm mb-3">
+              Education
+            </h2>
+            {education.map((edu, index) => (
+              <div key={index} className="mb-3">
+                <div className="flex justify-between items-baseline">
+                  <div>
+                    <h3 className="font-semibold">{edu.institution}</h3>
+                    <p className="italic text-sm">
+                      {edu.studyType} in {edu.area}
+                    </p>
+                  </div>
+                  <div className="text-sm text-gray-700 text-right">
+                    <p>{edu.endDate}</p>
+                    <p>{edu.location}</p>
+                  </div>
+                </div>
+                {edu.courses?.length > 0 && (
+                  <ul className="list-disc ml-6 mt-2 text-sm">
+                    {edu.courses.map((course, i) => (
+                      <li key={i}>{course}</li>
+                    ))}
+                  </ul>
+                )}
+              </div>
+            ))}
+          </section>
+        )}
+
+        {/* SKILLS */}
+        {skills?.length > 0 && (
+          <section className="mb-8 break-inside-avoid">
+            <h2 className="uppercase font-semibold tracking-wide border-b border-gray-400 pb-1 text-sm mb-3">
+              Skills
+            </h2>
+            <ul className="text-sm space-y-1">
+              {skills.map((skill, index) => (
+                <li key={index}>
+                  <span className="font-semibold">{skill.name}:</span>{" "}
+                  {skill.keywords?.join(", ")}
+                </li>
+              ))}
+            </ul>
+          </section>
+        )}
+      </div>
+
+      {/* PAGE 2 */}
+      <div
+        className="bg-white text-gray-900 p-10 leading-relaxed shadow-md
+                   w-[210mm] min-h-[297mm] print:shadow-none
+                   flex flex-col justify-start print:break-before-page"
+      >
+        {/* PROJECTS */}
+        {projects?.length > 0 && (
+          <section className="mb-8">
+            <h2 className="uppercase font-semibold tracking-wide border-b border-gray-400 pb-1 text-sm mb-3">
+              Projects
+            </h2>
+            {projects.map((proj, index) => (
+              <div key={index} className="mb-3">
+                <h3 className="font-semibold">{proj.name}</h3>
+                <p className="text-sm">{proj.description}</p>
+                {proj.url && (
+                  <a
+                    href={proj.url}
+                    target="_blank"
+                    className="text-blue-600 text-sm underline"
+                  >
+                    {proj.url}
+                  </a>
+                )}
+              </div>
+            ))}
+          </section>
+        )}
+
+        {/* AWARDS */}
+        {awards?.length > 0 && (
+          <section className="mb-8">
+            <h2 className="uppercase font-semibold tracking-wide border-b border-gray-400 pb-1 text-sm mb-3">
+              Awards
+            </h2>
+            {awards.map((award, index) => (
+              <div key={index} className="mb-2">
+                <h3 className="font-semibold">{award.title}</h3>
+                <p className="text-sm">
+                  {award.awarder} – {award.date}
+                </p>
+                {award.summary && (
+                  <p className="text-sm mt-1">{award.summary}</p>
+                )}
+              </div>
+            ))}
+          </section>
+        )}
+
+        {/* CERTIFICATES */}
+        {certificates?.length > 0 && (
+          <section className="mb-8">
+            <h2 className="uppercase font-semibold tracking-wide border-b border-gray-400 pb-1 text-sm mb-3">
+              Certificates
+            </h2>
+            {certificates.map((cert, index) => (
+              <div key={index} className="mb-2">
+                <h3 className="font-semibold">{cert.name}</h3>
+                <p className="text-sm">
+                  {cert.issuer} – {cert.date}
+                </p>
+              </div>
+            ))}
+          </section>
+        )}
+
+        {/* VOLUNTEER */}
+        {volunteer?.length > 0 && (
+          <section className="mb-8 break-inside-avoid">
+            <h2 className="uppercase font-semibold tracking-wide border-b border-gray-400 pb-1 text-sm mb-3">
+              Volunteer
+            </h2>
+            {volunteer.map((vol, index) => (
+              <div key={index} className="mb-3">
+                <h3 className="font-semibold">{vol.organization}</h3>
+                <p className="text-sm italic">{vol.position}</p>
+                <p className="text-sm">
+                  {vol.startDate} – {vol.endDate}
+                </p>
+              </div>
+            ))}
+          </section>
+        )}
+
+        {/* PUBLICATIONS */}
+        {publications?.length > 0 && (
+          <section className="mb-8 break-inside-avoid">
+            <h2 className="uppercase font-semibold tracking-wide border-b border-gray-400 pb-1 text-sm mb-3">
+              Publications
+            </h2>
+            {publications.map((pub, index) => (
+              <div key={index} className="mb-3">
+                <h3 className="font-semibold">{pub.name}</h3>
+                <p className="text-sm">
+                  <span className="italic">{pub.publisher}</span>, {pub.releaseDate}
+                </p>
+                {pub.url && (
+                  <a
+                    href={pub.url}
+                    target="_blank"
+                    className="text-blue-600 text-sm underline"
+                  >
+                    {pub.url}
+                  </a>
+                )}
+              </div>
+            ))}
+          </section>
+        )}
+
+        {/* INTERESTS */}
+        {interests?.length > 0 && (
+          <section className="mb-8 break-inside-avoid">
+            <h2 className="uppercase font-semibold tracking-wide border-b border-gray-400 pb-1 text-sm mb-3">
+              Interests
+            </h2>
+            <ul className="text-sm">
+              {interests.map((interest, i) => (
+                <li key={i}>
+                  <span className="font-semibold">{interest.name}:</span>{" "}
+                  {interest.keywords?.join(", ")}
+                </li>
+              ))}
+            </ul>
+          </section>
+        )}
+
+        {/* REFERENCES */}
+        {references?.length > 0 && (
+          <section className="break-inside-avoid">
+            <h2 className="uppercase font-semibold tracking-wide border-b border-gray-400 pb-1 text-sm mb-3">
+              References
+            </h2>
+            {references.map((ref, index) => (
+              <div key={index} className="text-sm mb-2">
+                <p className="font-semibold">{ref.name}</p>
+                <p>{ref.reference}</p>
+              </div>
+            ))}
+          </section>
+        )}
+      </div>
+    </main>
   );
 }
