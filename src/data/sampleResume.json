@@ -36,8 +36,8 @@
     {
       "name": "Bay Area Community Clinic",
       "position": "Resident Doctor (Internal Medicine)",
+      "url": "",
       "startDate": "2015-06-01",
-      "endDate": "2018-02-01",
       "summary": "Provided supervised medical care in the internal medicine department with exposure to emergency, outpatient, and chronic care units.",
       "highlights": [
         "Conducted over 1,000 physical exams and preventive screenings per year.",
@@ -47,8 +47,8 @@
     {
       "name": "Bay Area Community Clinic",
       "position": "Surgeon (Orthopedics)",
+      "url": "",
       "startDate": "2015-06-01",
-      "endDate": "2018-02-01",
       "summary": "Provided supervised medical care in the internal medicine department with exposure to emergency, outpatient, and chronic care units.",
       "highlights": [
         "Conducted over 1,000 physical exams and preventive screenings per year.",
@@ -67,11 +67,11 @@
     },
     {
       "institution": "Stanford University",
+      "url": "",
       "area": "Biology",
       "studyType": "Bachelor of Science (B.Sc.)",
       "startDate": "2007-09-01",
-      "endDate": "2011-06-01",
-      "score": "3.9/4.0"
+      "endDate": "2011-06-01"
     }
   ],
   "certificates": [
@@ -84,7 +84,8 @@
     {
       "name": "Advanced Cardiac Life Support (ACLS)",
       "issuer": "American Heart Association",
-      "date": "2022-02-15"
+      "date": "2022-02-15",
+      "url": ""
     }
   ],
   "publications": [
@@ -109,6 +110,7 @@
     },
     {
       "name": "Technical Skills",
+      "level": "",
       "keywords": [
         "Electronic Health Records (EHR)",
         "Telemedicine",
@@ -117,6 +119,7 @@
     },
     {
       "name": "Soft Skills",
+      "level": "",
       "keywords": [
         "Patient Communication",
         "Leadership",

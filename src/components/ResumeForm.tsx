@@ -9,7 +9,6 @@ interface Props {
 }
 
 export default function ResumeForm({ resume, setResume }: Props) {
-  // ✅ Safe nested path setter
   const handleChange = (path: string, value: string) => {
     const keys = path.split(".");
     setResume((prev) => {
@@ -27,7 +26,6 @@ export default function ResumeForm({ resume, setResume }: Props) {
     });
   };
 
-  // ✅ Add new section (e.g., new work, education, etc.)
   const addSection = (section: keyof Resume, template: any) => {
     setResume((prev) => ({
       ...prev,
@@ -40,7 +38,7 @@ export default function ResumeForm({ resume, setResume }: Props) {
       {/* BASICS */}
       <section>
         <h2 className="text-2xl font-semibold mb-4">Personal Details</h2>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6 border rounded-lg p-4">
           <input
             placeholder="Full Name"
             value={resume.basics.name}
@@ -88,12 +86,6 @@ export default function ResumeForm({ resume, setResume }: Props) {
             className="border p-2 rounded bg-gray-50"
           />
         </div>
-        <textarea
-          placeholder="Summary"
-          value={resume.basics.summary}
-          onChange={(e) => handleChange("basics.summary", e.target.value)}
-          className="w-full border p-2 rounded bg-gray-50"
-        />
       </section>
 
       {/* WORK EXPERIENCE */}

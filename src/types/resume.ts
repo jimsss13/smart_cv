@@ -20,17 +20,28 @@ export interface Resume {
   };
   work: {
     name: string;
+    company?: string; 
     position: string;
     url: string;
     startDate: string;
+    endDate?: string; 
     summary: string;
     highlights: string[];
+    location?: string; 
   }[];
   education: {
     institution: string;
     url: string;
     area: string;
     studyType: string;
+    startDate: string;
+    endDate: string;
+    location?: string; 
+    courses?: string[]; 
+  }[];
+  volunteer?: {
+    organization: string;
+    position: string;
     startDate: string;
     endDate: string;
   }[];
